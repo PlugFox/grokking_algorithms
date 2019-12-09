@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 typedef Comparator<T> = int Function(T a, T b);
 
 int binarySearch<T>(List<T> sortedList, T value, {Comparator<T> comparator, bool needToSort = false}) {
@@ -27,8 +29,12 @@ int _defaultComparator<T>(T a, T b) =>
     ? a.compareTo(b)
     : throw UnsupportedError('Unsupported type in compare function: ${T.toString()}');
 
+num log2(num x) => math.log(x) / math.log(2);
 
 void main() {
-  print(binarySearch([1, 2, 3, 4, 5], 1));
-  print(binarySearch([1, 2, 3, 4, 5], -1));
+  print(binarySearch([1, 2, 3, 4, 5], 1)); // 0
+  print(binarySearch([1, 2, 3, 4, 5], -1)); // null
+  print(log2(128)); // 7
+  print(log2(128*2)); // 8
+  print(log2(1000000000)); // ~30
 }
